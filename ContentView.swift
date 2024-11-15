@@ -1,13 +1,7 @@
-//
-//  ContentView.swift
-//  WeSplit
-//
-//  Created by Troy on 2/15/24.
-//
-
 import SwiftUI
 
 struct ContentView: View {
+    //Initialize variables
     @State private var checkAmount = 0.0
     @State private var numberOfPeople = 2
     @State private var tipPercentage = 20
@@ -16,6 +10,7 @@ struct ContentView: View {
     let tipPercentages = [0, 10, 15, 20, 25]
 
     var totalPerPerson: Double {
+        //Calculate amount per person and store in variable
         let peopleCount = Double(numberOfPeople + 2)
         let tipSelection = Double(tipPercentage)
         
@@ -27,7 +22,9 @@ struct ContentView: View {
     }
 
     var body: some View {
+        //NavigationStack is only available in iOS 16, so this checks for that
         if #available(iOS 16.0, *) {
+            //UI Elements
             NavigationStack {
                 Form {
                     Section("Enter the bill amount") {
@@ -73,6 +70,7 @@ struct ContentView: View {
     }
 }
 
+//Don't delete, this generates the preview
 #Preview {
     ContentView()
 }
