@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.sp
 import com.example.wesplit.ui.theme.WeSplitTheme
 import java.text.NumberFormat
 
+//Declare main class which displays the simulator
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,20 +37,24 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun TipCalculatorApp() {
+    //Declare variables
     var checkAmount by remember { mutableStateOf("") }
     var numberOfPeople by remember { mutableStateOf(2) }
     var tipPercentage by remember { mutableStateOf(20) }
     val tipPercentages = listOf(0, 10, 15, 20, 25)
+    //Intialize the focus point - make sure separate inputs (i.e. touch, type) occur one at a time
     val focusRequester = FocusRequester()
     val focusManager = LocalFocusManager.current
-
+    //Variable stores the final value of what each person pays
     val totalPerPerson = calculateTotalPerPerson(
         checkAmount.toDoubleOrNull() ?: 0.0,
         numberOfPeople,
         tipPercentage
     )
-
+    //The following code controls the UI functions
+    //Column UI view
     Column(
+        //Modifier changes the style
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp),
